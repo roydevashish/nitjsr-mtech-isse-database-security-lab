@@ -1,7 +1,9 @@
 -- Create the following tables:
 -- Table: Sales_master
 CREATE TABLE Sales_master(
-    Salesman_no varchar(6) PRIMARY KEY, CHECK(Salesman_no LIKE 'S%'),
+    -- Commented the below line as the CHECK condition is conflicting and causing error
+    -- Salesman_no varchar(6) PRIMARY KEY, CHECK(Salesman_no LIKE 'S%'),
+    Salesman_no varchar(6) PRIMARY KEY,
     Sal_name varchar(20) NOT NULL,
     Address varchar(50) NOT NULL,
     City varchar(20),
@@ -53,6 +55,9 @@ VALUES
 ('500002', 'Manish', '65, nariman', 'Bombay', 400001, 'Mah', 3000, 200, 100, 'Good'),
 ('500003', 'Ravi', 'P-7 Bandra', 'Bombay', 400032, 'Mah', 3000, 200, 100, 'Good'),
 ('500004', 'Ashish', 'A/5 Juhu', 'Bombay', 400044, 'Mah', 3500, 200, 150, 'Good')
+
+-- Set date format to dmy
+SET DATEFORMAT dmy
 
 -- Insert data for Sales_order table.
 -- Commented two records as client_no 0001 doesn't exists.
