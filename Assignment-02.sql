@@ -28,7 +28,9 @@ SELECT name FROM client_master WHERE name LIKE '_a%'
 SELECT * FROM product_master ORDER BY Description ASC
 
 -- 9. Count the total number of orders
--- Table have no attribute with name orders, need more details about the query.
+-- Table have no attribute with name orders, need more details about the query,
+-- as per the direction of sir, calculate the sun of Reoder_lvl attribute.
+SELECT SUM(Reoder_lvl) FROM product_master
 
 -- 10. Calculate the average price of all the products.
 SELECT AVG(Cost_price) as avg_cost_price, AVG(Sell_price) as avg_sell_price FROM product_master
