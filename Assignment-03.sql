@@ -1,53 +1,53 @@
 -- Create the following tables:
 -- Table: Sales_master
-CREATE TABLE Sales_master(
-    Salesman_no varchar(7) PRIMARY KEY, CHECK(Salesman_no LIKE 'S%'),
-    Sal_name varchar(20) NOT NULL,
-    Address varchar(50) NOT NULL,
-    City varchar(20),
-    State varchar(20),
-    Pincode NUMERIC(6),
-    Sal_amt NUMERIC(8,2) NOT NULL, CHECK(Sal_amt > 0),
-    Tgt_to_get NUMERIC(6,2) NOT NULL, CHECK(Tgt_to_get > 0),
-    Ytd_sales NUMERIC(6,2) NOT NULL, CHECK(Ytd_sales > 0),
-    Remarks Varchar(30)
+CREATE TABLE sales_master(
+    salesman_no VARCHAR(7) PRIMARY KEY, CHECK(salesman_no LIKE 'S%'),
+    salesman_name VARCHAR(20) NOT NULL,
+    address VARCHAR(50) NOT NULL,
+    city VARCHAR(20),
+    state VARCHAR(20),
+    pincode NUMERIC(6),
+    sales_amt NUMERIC(8,2) NOT NULL, CHECK(sales_amt > 0),
+    tgt_to_get NUMERIC(6,2) NOT NULL, CHECK(tgt_to_get > 0),
+    ytd_sales NUMERIC(6,2) NOT NULL, CHECK(ytd_sales > 0),
+    remarks VARCHAR(30)
 )
 
 -- Table: Sales_order
 -- Alter the table client_master to set the column client_no to primary key
--- ALTER TABLE client_master ALTER COLUMN client_no VARCHAR(6) NOT NULL
--- ALTER TABLE client_master ADD PRIMARY KEY(client_no)
+ALTER TABLE client_master ALTER COLUMN client_no VARCHAR(6) NOT NULL
+ALTER TABLE client_master ADD PRIMARY KEY(client_no)
 
-CREATE TABLE Sales_order(
-    S_order_no varchar(6) PRIMARY KEY, CHECK(S_order_no LIKE '0%'),
-    S_order_date Date, 
-    Client_no Varchar(6), FOREIGN KEY(Client_no) REFERENCES client_master(client_no),
-    Dely_add Varchar(6),
-    Salesman_no Varchar(7), FOREIGN KEY(Salesman_no) REFERENCES Sales_master(salesman_no),
-    Dely_type Char(1) DEFAULT 'f', CHECK(Dely_type LIKE 'p' OR Dely_type LIKE 'f'),
-    Billed_yn Char(1),
-    Dely_date Date, CHECK(Dely_date > S_order_date),
-    Order_status Varchar(10), CHECK(Order_status LIKE 'in process' OR Order_status LIKE 'fulfilled' OR Order_status LIKE 'back order' OR Order_status LIKE 'canceled')
+CREATE TABLE sales_order(
+    s_order_no VARCHAR(6) PRIMARY KEY, CHECK(s_order_no LIKE '0%'),
+    s_order_date DATE, 
+    client_no VARCHAR(6), FOREIGN KEY(client_no) REFERENCES client_master(client_no),
+    dely_add VARCHAR(6),
+    salesman_no VARCHAR(7), FOREIGN KEY(salesman_no) REFERENCES sales_master(salesman_no),
+    dely_type CHAR(1) DEFAULT 'F', CHECK(dely_type LIKE 'P' OR dely_type LIKE 'F'),
+    billed_yn CHAR(1),
+    dely_date DATE, CHECK(dely_date > s_order_date),
+    order_status VARCHAR(10), CHECK(order_status LIKE 'in process' OR order_status LIKE 'fulfilled' OR order_status LIKE 'back order' OR order_status LIKE 'canceled')
 )
 
 -- Table: Sales_order_details
 -- Alter the table product_master to set the column product_no to primary key
--- ALTER TABLE product_master ALTER COLUMN Product_no VARCHAR(6) NOT NULL
--- ALTER TABLE product_master ADD PRIMARY KEY(Product_no)
+ALTER TABLE product_master ALTER COLUMN product_no VARCHAR(6) NOT NULL
+ALTER TABLE product_master ADD PRIMARY KEY(product_no)
 
-CREATE TABLE Sales_order_details(
-    S_order_no Varchar(6),
-    Product_no Varchar(6),
-    Qty_order NUMERIC(8),
-    Qty_disp NUMERIC(8),
-    Product_rate NUMERIC(10,2)
-    FOREIGN KEY(S_order_no) REFERENCES Sales_order(S_order_no),
-    FOREIGN KEY(Product_no) REFERENCES product_master(Product_no)
+CREATE TABLE sales_order_details(
+    s_order_no VARCHAR(6),
+    product_no VARCHAR(6),
+    qty_order NUMERIC(8),
+    qty_disp NUMERIC(8),
+    product_rate NUMERIC(10,2)
+    FOREIGN KEY(s_order_no) REFERENCES sales_order(s_order_no),
+    FOREIGN KEY(product_no) REFERENCES product_master(product_no)
 )
 
 -- Insert the following data into their respective tables using insert statement:
 -- Insert data for Sales_master table.
-INSERT INTO Sales_master(Salesman_no, Sal_name, Address, City, Pincode, State, Sal_amt, Tgt_to_get, Ytd_sales, Remarks)
+INSERT INTO sales_master(salesman_no, salesman_name, address, city, pincode, state, sales_amt, tgt_to_get, ytd_sales, remarks)
 VALUES
 ('S500001', 'Kiran', 'A/14 worli', 'Bombay', 400002, 'Mah', 3000, 100, 50, 'Good'),
 ('S500002', 'Manish', '65, nariman', 'Bombay', 400001, 'Mah', 3000, 200, 100, 'Good'),
@@ -59,11 +59,11 @@ SET DATEFORMAT dmy
 
 -- Insert details of client with client_no 0001 to avoid foregin key error 
 -- as this client was deleted in assignment 02.
--- INSERT INTO client_master (client_no, name, city, pincode, state, bal_due) 
--- VALUES ('0001', 'Ivan', 'Bombay', 400054, 'Maharashtra', 15000)
+INSERT INTO client_master (client_no, name, city, pincode, state, bal_due) 
+VALUES ('0001', 'Ivan', 'Bombay', 400054, 'Maharashtra', 15000)
 
 -- Insert data for Sales_order table.
-INSERT INTO Sales_order(S_order_no, S_order_date, Client_no, Dely_type, Billed_yn, Salesman_no, Dely_date, Order_status)
+INSERT INTO sales_order(s_order_no, s_order_date, client_no, dely_type, billed_yn, salesman_no, dely_date, order_status)
 VALUES
 ('019001', '12-01-96', '0001', 'F', 'N', 'S500001', '20-01-1996', 'in process'),
 ('019002', '25-01-96', '0002', 'P', 'N', 'S500002', '27-01-96', 'canceled'),
@@ -74,7 +74,7 @@ VALUES
 
 -- Insert data for Sales_order_details table.
 -- Edited S_order_no for 046865 to 016865.
-INSERT INTO Sales_order_details(S_order_no, Product_no, Qty_order, Qty_disp, Product_rate)
+INSERT INTO sales_order_details(s_order_no, product_no, qty_order, qty_disp, product_rate)
 VALUES
 ('019001', 'P00001', 4, 4, 525),
 ('019001', 'P07965', 2, 1, 8400),
