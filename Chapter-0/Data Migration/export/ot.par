@@ -1,0 +1,6 @@
+userid=OT@pdborcl/tiger
+directory=ot_external
+dumpfile=ot_exp%U.dmp
+logfile=ot_exp.log
+filesize=50K
+schemas=ot

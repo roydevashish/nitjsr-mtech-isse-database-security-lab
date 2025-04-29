@@ -1,0 +1,6 @@
+userid=OT/tiger
+control=email.ctl
+log=email.log
+bad=email.bad
+data=email.dat
+direct=true

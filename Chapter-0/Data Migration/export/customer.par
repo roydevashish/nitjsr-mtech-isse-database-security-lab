@@ -1,0 +1,6 @@
+userid=OT@pdborcl/tiger
+directory=ot_external
+dumpfile=customer_exp%U.dmp
+logfile=customer_exp.log
+filesize=50K
+tables=customers

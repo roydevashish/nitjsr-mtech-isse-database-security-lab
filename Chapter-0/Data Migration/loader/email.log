@@ -1,0 +1,52 @@
+
+SQL*Loader: Release 11.2.0.1.0 - Production on Wed Apr 23 15:59:07 2025
+
+Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
+
+Control File:   email.ctl
+Data File:      email.dat
+  Bad File:     email.bad
+  Discard File:  none specified
+ 
+ (Allow all discards)
+
+Number to load: ALL
+Number to skip: 0
+Errors allowed: 50
+Continuation:    none specified
+Path used:      Direct
+
+Table SYSTEM.EMAILS, loaded from every logical record.
+Insert option in effect for this table: INSERT
+
+   Column Name                  Position   Len  Term Encl Datatype
+------------------------------ ---------- ----- ---- ---- ---------------------
+EMAIL_ID                            FIRST     *   ,       CHARACTER            
+EMAIL                                NEXT     *   ,       CHARACTER            
+
+The following index(es) on table SYSTEM.EMAILS were processed:
+index SYSTEM.SYS_C0011056 loaded successfully with 3 keys
+
+Table SYSTEM.EMAILS:
+  3 Rows successfully loaded.
+  0 Rows not loaded due to data errors.
+  0 Rows not loaded because all WHEN clauses were failed.
+  0 Rows not loaded because all fields were null.
+
+Bind array size not used in direct path.
+Column array  rows :    5000
+Stream buffer bytes:  256000
+Read   buffer bytes: 1048576
+
+Total logical records skipped:          0
+Total logical records read:             3
+Total logical records rejected:         0
+Total logical records discarded:        0
+Total stream buffers loaded by SQL*Loader main thread:        2
+Total stream buffers loaded by SQL*Loader load thread:        0
+
+Run began on Wed Apr 23 15:59:07 2025
+Run ended on Wed Apr 23 15:59:07 2025
+
+Elapsed time was:     00:00:00.06
+CPU time was:         00:00:00.00

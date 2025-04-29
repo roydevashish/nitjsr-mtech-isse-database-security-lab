@@ -1,0 +1,5 @@
+userid=OT@pdborcl/tiger
+directory=ot_external
+dumpfile=customer_exp%U.dmp
+logfile=customer_imp.log
+remap_table=ot.customers:customers_bk
